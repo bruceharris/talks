@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Into to Meteor</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <textarea id="source" style="display:none;">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+### another framework? really?
+# Meteor
+## why you might care about this one
+### 10/17/2013
+---
+layout: false
+
+.left-column[
+  ## Agenda
+]
+
+.right-column[
+  ## How is Meteor different?
+  ## Case studies
+
+  * Code and deploy toy chat app in 5 minutes
+
+  * Esteamator - agile estimation tool for distributed teams
+
+
+  ## Applicable use cases
+
+  * Present
+
+  * Future outlook
+]
+---
+layout: false
+
+.left-column[
+  ## Context
+]
+
+.right-column[
+
+  ## My experience with Meteor:
+
+  * Need for estimation tool for distributed team
+
+  * Built Esteamator with Meteor
+
+
+>  ### (Esteamator demo)
+]
+---
+name: inverseLeft
+layout: true
+class: inverse
+---
+## Composing the tech stack
+
+> ### Lots of frameworks/libraries/tools out there
+> ### Need to choose tech for each layer in stack
+> ### Compose and integrate
+> ### Tools and process to build/deploy 
+
+---
+## Composing the tech stack
+
+> ### lots of tedious effort just to get project set up
+
+---
+## Composing the tech stack
+
+> ### Explored Meteor among other frameworks
+> ### Meteor is a *full stack* framework
+> ### ... with a native build tool
+> ### ... and deploy/hosting service
+
+---
+layout: false
+
+.left-column[
+  ## How is it different?
+  ### - Full stack framework
+]
+
+.right-column[
+
+  ### Stack is already integrated
+
+  * Eliminates overhead of project setup
+
+  * One language (JavaScript)
+
+  * Package system with sensible defaults
+
+
+  ### Deployment and hosting support
+
+  * Short cycle from scratch to fully functional prototype
+]
+---
+.left-column[
+  ## How is it different?
+  ### - Full stack framework
+  ### - Realtime
+]
+.right-column[
+
+  ### The internet of the future - no more stale client
+
+  * Seamless client/server integration
+
+  * Local cache of DB - server pushes deltas to client
+
+  * Same database API on client and server
+
+  * Abstracts distinction between client/server
+
+  * Less latency - *synchronous* local DB access
+
+  * Callbacks not always needed
+]
+---
+.left-column[
+  ## How is it different?
+  ### - Full stack framework
+  ### - Realtime
+  ### - Reactivity
+]
+.right-column[
+  ### Reactive templates
+
+  * Automatically update in response to DB changes
+
+  * No need to subscribe views to models
+
+  * Views *always* reflect data
+
+  * DOM manipulation not necessary
+]
+---
+template: inverse
+
+## Under the hood...
+---
+.left-column[
+  ## In Conclusion
+  ### Considerations
+]
+.right-column[
+
+  ## Possible Downsides
+
+  * Lots of magic - edge use cases not handled by magic?
+
+  * Unit testing for trivial units?
+
+  * No REST - can't expose API to other clients?
+
+  * Performance / network / battery concerns on mobile?
+
+  * Lacks full integration with NPM - separate package system
+
+  * Client side rendering only
+
+  * Not yet proven with large applications
+
+  * Young evolving framework with breaking API changes
+]
+---
+.left-column[
+  ## In Conclusion
+  ### Considerations
+  ### Room for improvement
+]
+.right-column[
+
+  ## Need to be addressed before 1.0
+
+  * Poor built-in namespace / scope / dependency management
+
+  * No namespacing for templates
+
+  * Scalability - multiple node deployment not supported yet
+
+  * No server side routing yet
+]
+---
+.left-column[
+  ## In Conclusion
+  ### Considerations
+  ### Room for improvement
+  ### Use Cases
+]
+.right-column[
+  ## Not a good fit for...
+
+  * Lots of data needed on client
+
+  * Very frequent "noisy" data updates
+
+  * Lacking maturity for industries that require proven platforms
+]
+---
+.left-column[
+  ## In Conclusion
+  ### Considerations
+  ### Room for improvement
+  ### Use Cases
+]
+.right-column[
+
+  ## Likely good fit for...
+
+  * Small to medium size applications
+
+  * Prototypes to be discarded and rebuilt
+
+  * Non mission critical applications
+
+  * Timeline / minimizing dev effort is a priority
+]
+---
+template: inverseLeft
+
+## Outlook
+
+* MVP approach - ship early and imperfect
+
+* Lot$ of funding from top tier VC firms
+
+* Large active community
+
+* Many known issues to be addressed by 1.0
+
+* Ground breaking ideas will inspire other frameworks
+
+---
+template: inverse
+
+# Thanks
+
+Slides created using [remark](http://github.com/gnab/remark).
+    </textarea>
+    <script src="../lib/remark-0.5.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
