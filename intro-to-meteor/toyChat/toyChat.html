@@ -1,0 +1,21 @@
+<head>
+  <title>Toy Chat</title>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  {{#if nameEntered}}
+    <div>Welcome {{user}}!</div>
+    <ul>
+    {{#each messages}}
+      <li>{{name}}: {{text}}
+    {{/each}}
+    </ul>
+    <input class="message" placeholder="say something" autofocus>
+  {{else}}
+    <input class="name" placeholder="enter name" autofocus>
+  {{/if}}
+</template>
