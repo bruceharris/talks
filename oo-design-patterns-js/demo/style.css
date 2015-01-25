@@ -1,0 +1,50 @@
+.fruit {
+  -webkit-transition: 1s ease-in-out;
+  position: absolute;
+  left:0px;
+  display: none;
+}
+
+.apple {
+  top: 250px;
+  left: 250px;
+}
+
+.show {
+  display: block;
+  -webkit-transition: all 1s ease;
+}
+
+.roll-right {
+  -webkit-animation: spin 2s linear, moveLeftToRight 2s linear;
+  left: 600px;
+}
+
+.slide-left {
+  -webkit-animation: moveRightToLeft 2s linear;
+  left: 0px;
+}
+
+.expand {
+  -webkit-animation: expand 2s linear;
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes moveLeftToRight {
+  0%   { left: 0px; }
+  100% { left: 600px; }
+}
+
+@-webkit-keyframes moveRightToLeft {
+  0%   { left: 100%; }
+  100% { left: 0px; }
+}
+
+@-webkit-keyframes expand {
+  0%   { transform: scale(0.1); }
+  100% { transform: scale(1); }
+}

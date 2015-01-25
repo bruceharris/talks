@@ -1,0 +1,55 @@
+@startuml
+
+class Fruit {
+  {abstract} show()
+  {abstract} hide()
+}
+class Banana {
+  - shower: SlidingShowBehavior
+  - hider: FadingHideBehavior
+  ---
+  + show() { shower.show(this); }
+  + hide() { hider.hide(this); }
+}
+class Apple {
+  - shower: RollingShowBehavior
+  - hider: FadingHideBehavior
+  ---
+  + show() { shower.show(this); }
+  + hide() { hider.hide(this); }
+}
+class Orange {
+  - shower: RollingShowBehavior
+  - hider: SlidingHideBehavior
+  ---
+  + show() { shower.show(this); }
+  + hide() { hider.hide(this); }
+}
+
+class SlidingShowBehavior {
+  + show(fruit: Fruit)
+}
+class RollingShowBehavior {
+  + show(fruit: Fruit)
+}
+
+
+class SlidingHideBehavior {
+  + hide(fruit: Fruit)
+}
+class FadingHideBehavior {
+  + hide(fruit: Fruit)
+}
+
+Apple *- RollingShowBehavior
+Orange *- RollingShowBehavior
+Banana *- SlidingShowBehavior
+Banana *- FadingHideBehavior
+Apple *- FadingHideBehavior
+Orange *- SlidingHideBehavior
+
+Fruit <|-- Banana
+Fruit <|-- Apple
+Fruit <|-- Orange
+
+@enduml

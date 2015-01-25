@@ -1,0 +1,56 @@
+@startuml
+
+interface ShowBehavior {
+  + show(fruit: Fruit)
+}
+
+interface HideBehavior {
+  + hide(fruit: Fruit)
+}
+
+class Fruit {
+  - shower: ShowBehavior
+  - hider: HideBehavior
+  ---
+  + show() { shower.show(this); }
+  + hide() { hider.hide(this); }
+  ---
+  + setShower(showBehavior: ShowBehavior)
+  + setHider(hideBehavior: hideBehavior)
+}
+class Banana {
+}
+class Apple {
+}
+class Orange {
+}
+
+class SlidingShowBehavior {
+  + show(fruit: Fruit)
+}
+class RollingShowBehavior {
+  + show(fruit: Fruit)
+}
+
+
+class SlidingHideBehavior {
+  + hide(fruit: Fruit)
+}
+class FadingHideBehavior {
+  + hide(fruit: Fruit)
+}
+
+Fruit *- ShowBehavior
+Fruit *- HideBehavior
+
+Fruit <|-- Banana
+Fruit <|-- Apple
+Fruit <|-- Orange
+
+ShowBehavior <|-- SlidingShowBehavior
+ShowBehavior <|-- RollingShowBehavior
+
+HideBehavior <|-- SlidingHideBehavior
+HideBehavior <|-- FadingHideBehavior
+
+@enduml

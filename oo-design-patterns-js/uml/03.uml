@@ -1,0 +1,21 @@
+@startuml
+
+class Fruit {
+  + show()
+  + hide()
+}
+class Banana {
+  + show()  // animate - slide in
+}
+class Apple #pink {
+  + show()  // animate - roll in
+}
+class Orange #pink {
+  + show()  // animate - roll in
+}
+
+Fruit <|-- Banana
+Fruit <|-- Apple
+Fruit <|-- Orange
+
+@enduml
