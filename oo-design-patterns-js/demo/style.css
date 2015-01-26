@@ -1,13 +1,6 @@
 .fruit {
-  -webkit-transition: 1s ease-in-out;
   position: absolute;
-  left:0px;
   display: none;
-}
-
-.apple {
-  top: 250px;
-  left: 250px;
 }
 
 .show {
@@ -27,6 +20,8 @@
 
 .expand {
   -webkit-animation: expand 2s linear;
+  top: 250px;
+  left: 250px;
 }
 
 @-webkit-keyframes spin {
