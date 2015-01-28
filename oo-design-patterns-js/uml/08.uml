@@ -4,18 +4,12 @@ interface ShowBehavior {
   + show(fruit: Fruit)
 }
 
-interface HideBehavior {
-  + hide(fruit: Fruit)
-}
-
 class Fruit {
   - shower: ShowBehavior
-  - hider: HideBehavior
   ---
-  Fruit(shower: ShowBehavior, hider: HideBehavior)
+  Fruit(shower: ShowBehavior)
   ---
   + show() { shower.show(this); }
-  + hide() { hider.hide(this); }
 }
 class Banana {
 }
@@ -32,15 +26,7 @@ class RollingShowBehavior {
 }
 
 
-class SlidingHideBehavior {
-  + hide(fruit: Fruit)
-}
-class FadingHideBehavior {
-  + hide(fruit: Fruit)
-}
-
 Fruit *- ShowBehavior
-Fruit *- HideBehavior
 
 Fruit <|-- Banana
 Fruit <|-- Apple
@@ -48,8 +34,5 @@ Fruit <|-- Orange
 
 ShowBehavior <|-- SlidingShowBehavior
 ShowBehavior <|-- RollingShowBehavior
-
-HideBehavior <|-- SlidingHideBehavior
-HideBehavior <|-- FadingHideBehavior
 
 @enduml

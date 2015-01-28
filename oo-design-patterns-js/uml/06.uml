@@ -41,12 +41,12 @@ class FadingHideBehavior {
   + hide(fruit: Fruit)
 }
 
-Apple *- RollingShowBehavior
-Orange *- RollingShowBehavior
-Banana *- SlidingShowBehavior
-Banana *- FadingHideBehavior
-Apple *- FadingHideBehavior
-Orange *- SlidingHideBehavior
+Apple *-- RollingShowBehavior
+Orange *-- RollingShowBehavior
+Banana *-- SlidingShowBehavior
+Banana *-- FadingHideBehavior
+Apple *-- FadingHideBehavior
+Orange *-- SlidingHideBehavior
 
 Fruit <|-- Banana
 Fruit <|-- Apple
