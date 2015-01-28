@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Classical OO Design Patterns in JavaScript</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Classical OO Design Patterns in JavaScript</h1>
+					<h3>Case Study: The Strategy Pattern</h3>
+					<p>
+						<small><a href="http://bruceharris.github.io/talks/">Bruce Harris</a></small>
+					</p>
+				</section>
+
+				<section data-background="images/L1.jpg"> </section>
+				<section data-background="images/L2.jpg"> </section>
+				<section data-background="images/lego-nerd.jpg"> </section>
+				<section>
+					<h2>Hypothesis</h2>
+					<blockquote> 
+						Many of the classical object oriented design patterns were conceived 
+						to work around constraints imposed by strictly typed languages without
+						support for first class functions. In dynamically typed, functional
+						languages, there are often simpler patterns to achieve the same objectives.
+					</blockquote>
+				</section>
+				<section>
+					<h2>Case Study</h2>
+					<h3>Strategy Pattern</h3>
+					<blockquote>
+						&ldquo;Define a family of algorithms, encapsulate each one, and make
+						them interchangable. Strategy lets the algorithm vary independently
+						from clients that use it.&rdquo; [GoF 315]
+					</blockquote>
+				</section>
+				<section>
+					<h2>Case Study</h2>
+					<h3>Strategy Pattern</h3>
+					<ol> 
+						<li>Conceptual deep dive</li>
+						<li>Classical style JavaScript implementation</li>
+						<li>"Native style" JavaScript implementation</li>
+					</ol>
+				</section>	
+				<section>	
+					<iframe src="../demo/index.html" width="1200" height="700"></iframe>
+				</section>	
+				<section>
+					<img src="../uml/01.png">
+				</section>
+				<section>
+					<img src="../uml/02.png">
+				</section>
+				<section>
+					<img src="../uml/03.png">
+				</section>
+				<section>
+					<img src="../uml/04.png">
+				</section>
+				<section>
+					<img src="../uml/05.png">
+					<blockquote class="fragment roll-in">&ldquo;Favor object composition over class inheritance.&rdquo;
+						[GoF 20]</blockquote>
+				</section>
+				<section>
+					<img src="../uml/06.png">
+					<blockquote class="fragment roll-in">&ldquo;Program to an interface, not an implementation.
+						[GoF 18]</blockquote>
+				</section>
+				<section>
+					<img src="../uml/07.png">
+				</section>
+				<section>
+					<img src="../uml/08.png">
+				</section>
+				<section>
+					<img src="../uml/09.png">
+				</section>
+				<section data-markdown data-background="#000" data-background-transition="zoom">
+					<script type="text/template">
+					## Classical Style implementation
+					### Strategy Class Hierarchy – Base Class
+
+```
+// Base class with default strategy implementation
+function ShowBehavior() {}
+ShowBehavior.prototype.show = function($element) {
+  $element.addClass('show');
+}
+```
+					</script>
+				</section>
+				<section data-markdown data-background="#000" >
+					<script type="text/template">
+					### Strategy Class Hierarchy – Subclasses
+
+```
+// SlidingLeftBehavior extends ShowBehavior
+function SlidingLeftBehavior() {}
+SlidingLeftBehavior.prototype = Object.create(ShowBehavior.prototype);
+SlidingLeftBehavior.prototype.show = function($element) {
+  $element.addClass('show slide-left');
+};
+
+// RollingRightBehavior extends ShowBehavior
+function RollingRightBehavior() {}
+RollingRightBehavior.prototype = Object.create(ShowBehavior.prototype);
+RollingRightBehavior.prototype.show = function($element) {
+  $element.addClass('show roll-right');
+};
+```
+					</script>
+				</section>
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Context Class Hierarchy – Base Class
+
+```
+// abstract base class Fruit
+function Fruit() {}
+
+Fruit.prototype.initialize = function(shower) {
+  if (shower) this.shower = shower;
+  this.$element = $('<img src="images/' +
+  			this.name + '.svg" class="fruit ' + this.name + '">');
+  $('body').append(this.$element);
+}
+Fruit.prototype.show = function() {
+  this.shower.show(this.$element);
+}
+Fruit.prototype.shower = new ShowBehavior();
+```					
+
+					* show method delegates to instance of strategy class
+					* passes data to it so it can change state of context object
+					</script>
+				</section>
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Context Class Hierarchy – Subclasses
+```
+// Banana extends Fruit
+function Banana(shower) {
+  this.initialize(shower);
+}
+Banana.prototype = Object.create(Fruit.prototype);
+Banana.prototype.name = 'banana';
+
+
+// Orange extends Fruit
+function Orange(shower) {
+  this.initialize(shower);
+}
+Orange.prototype = Object.create(Fruit.prototype);
+Orange.prototype.name = 'orange';
+
+// Apple extends Fruit
+function Apple(shower) {
+  this.initialize(shower);
+}
+Apple.prototype = Object.create(Fruit.prototype);
+Apple.prototype.name = 'apple';
+```
+					</script>
+				</section>
+
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Client
+```
+var fruitList = [
+  new Apple(),
+  new Orange(new RollingRightBehavior()),
+  new Banana(new SlidingLeftBehavior())
+];
+
+fruitList.forEach(function(fruit) {
+  fruit.show();
+});
+```
+
+					* pass instance of strategy to context constructor
+					</script>
+				</section>
+
+
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					## "Native Style" JavaScript Implementation
+					### Strategy functions
+```
+function showSlidingLeft() {
+  this.$element.addClass('show slide-left');
+}
+
+function showRollingRight() {
+  this.$element.addClass('show roll-right');
+}
+
+function defaultShow() {
+  this.$element.addClass('show');
+}
+```
+
+					* no container class needed
+					* no inheritance hierarchy
+					* no passing in state/data to methods
+					</script>
+				</section>
+
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Context Class Hierarchy – Base Class
+```
+// abstract base class Fruit
+function Fruit() {}
+
+Fruit.prototype.initialize = function() {
+  this.$element = $('<img src="images/' +
+  			this.name + '.svg" class="fruit ' + this.name + '">');
+  $('body').append(this.$element);
+}
+Fruit.prototype.show = defaultShow;
+```
+
+					* show method assigned to a stand alone function
+					* direct reference rather than delegation
+					* strategy function binds `this` dynamically
+					</script>
+				</section>
+
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Context Class Hierarchy – Subclasses
+```
+// Banana extends Fruit
+function Banana() {
+  this.initialize();
+}
+Banana.prototype = Object.create(Fruit.prototype);
+Banana.prototype.name = 'banana';
+// default strategy for Banana
+Banana.prototype.show = showSlidingLeft;
+
+
+// Orange extends Fruit
+function Orange() {
+  this.initialize();
+}
+Orange.prototype = Object.create(Fruit.prototype);
+Orange.prototype.name = 'orange';
+
+
+// Apple extends Fruit
+function Apple() {
+  this.initialize();
+}
+Apple.prototype = Object.create(Fruit.prototype);
+Apple.prototype.name = 'apple';
+```
+					</script>
+				</section>
+
+				<section data-markdown data-background="#000">
+					<script type="text/template">
+					### Client
+```
+var fruitList = [new Apple(), new Orange(), new Banana()];
+
+fruitList[0].show = showRollingRight;
+
+fruitList.forEach(function(fruit) {
+  fruit.show();
+});
+```
+
+					* No need to pass strategy into constructor
+					* Client can change strategies dynamically
+					</script>
+				</section>
+
+
+				<section data-state="customevent">
+					<h2>State Events</h2>
+					<p>
+						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+					</p>
+					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+Reveal.addEventListener( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+				</section>
+
+
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						- <a href="http://slides.com">Try the online editor</a> <br>
+						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
