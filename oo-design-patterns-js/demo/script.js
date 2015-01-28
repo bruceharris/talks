@@ -34,7 +34,6 @@ $(function() {
   function Banana() {
     this.initialize();
   }
-
   Banana.prototype = Object.create(Fruit.prototype);
   Banana.prototype.name = 'banana';
   Banana.prototype.show = showSlidingLeft;
@@ -44,7 +43,6 @@ $(function() {
   function Orange() {
     this.initialize();
   }
-
   Orange.prototype = Object.create(Fruit.prototype);
   Orange.prototype.name = 'orange';
   Orange.prototype.show = showRollingRight;
@@ -54,13 +52,12 @@ $(function() {
   function Apple() {
     this.initialize();
   }
-
   Apple.prototype = Object.create(Fruit.prototype);
   Apple.prototype.name = 'apple';
   Apple.prototype.show = showExpanding;
 
 
-  var fruitList = [new Orange(), new Banana(), new Apple()];
+  var fruitList = [new Apple(), new Orange(), new Banana()];
 
   fruitList.forEach(function(fruit) {
     fruit.show();
