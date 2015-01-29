@@ -52,7 +52,7 @@
 						  <li> Background - JS Programmer
 						  <li> OOP in JS
 	  				  <li> No experience static
-						  <li> Classical OOD - GoF
+						  <li> Bible OOD - GoF
   				  </ul>
 					</aside>
 				</section>
@@ -68,8 +68,7 @@
 					<aside class="notes">
 						<ul>
 						  <li> Experience Java - static, classical
-					  	<li> Revisited OO Patterns
-					  	<li> Head First Design Patterns
+					  	<li> Revisited Design Patterns
 					  	<li> Began to understand
 					  	<li> Understood why didn't understand
   				  </ul>
@@ -98,6 +97,24 @@
 						them interchangable. Strategy lets the algorithm vary independently
 						from clients that use it.&rdquo; [GoF 315]
 					</blockquote>
+					<aside class="notes">
+						<ul>
+					  	<li> Study this pattern
+					  	<li> concept applicable other patterns
+					  	<li> Diagram
+  				  </ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Strategy Pattern</h3>
+					<img src="../uml/09.png">
+					<aside class="notes">
+						Define a family of algorithms, encapsulate each one, and make
+						them interchangable (via interface). Strategy lets the algorithm vary independently from clients that use it
+						<ul>
+						  <li> Context has a strategy
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<h2>Case Study</h2>
@@ -111,8 +128,6 @@
 						<ul>
 						  <li> Use case for strategy
 						  <li> Compare/contrast Classical/Native
-					  	<li> Takeaway: concept > other patterns
-					  	<li> Audience
   				  </ul>
 					</aside>
 				</section>	
@@ -143,6 +158,7 @@
 					<img src="../uml/02.png">
 					<aside class="notes">
 						<ul>
+						  <li> Want code easy to change
 						  <li> Requirements change
 						  <li> Apple rolls in
 					  	<li> Still reasonable
@@ -165,7 +181,7 @@
 					<img src="../uml/04.png">
 					<aside class="notes">
 						<ul>
-						  <li> Naive - inheritance
+						  <li> Naive - add layer
 						  <li> Beginning to smell
 						  <li> Coupling behavior to class
 					  	<li> Design inflexible
@@ -180,6 +196,7 @@
 					<aside class="notes">
 						<ul>
 						  <li> Varying hide behavior
+						  <li> Doesn't fit neatly
 						  <li> Where put duplicated code?
 						  <li> Principle - favor...
   				  </ul>
@@ -195,11 +212,13 @@
 						  <li> Each fruit has instance
 						  <li> Delegates to behavior class
 						  <li> Code duplication
-						  <li> Coupling, lacks flexibility
+						  <li> Coupling to concrete strategy
+						  <li> Principle - interface...
   				  </ul>
 					</aside>
 				</section>
 				<section>
+					<h3>Strategy Pattern</h3>
 					<img src="../uml/07.png">
 					<aside class="notes">
 						<ul>
@@ -212,29 +231,18 @@
 					</aside>
 				</section>
 				<section>
+					<h3>Strategy Pattern</h3>
 					<img src="../uml/08.png">
 					<aside class="notes">
 						<ul>
 						  <li> Pushed show() into Superclass
 						  <li> Avoid repetition	
-						  <li> Fruit constructor passed strategy
 						  <li> Client can choose strategy
-						  <li> Alternatively setters w/default
+						  <li> Constructor or setters
 						  <li> Strategy method passed data/state
-						  <li> Strategy decoupled from context
   				  </ul>
 					</aside>
 				</section>
-				</section>
-				<section>
-					<img src="../uml/09.png">
-					<aside class="notes">
-						<ul>
-						  <li> GoF terminology
-						  <li> Context, strategy
-						  <li> Next - Classical Impl
-  				  </ul>
-					</aside>
 				</section>
 				<section data-background="#000" data-background-transition="zoom">
 					<div data-markdown>
@@ -254,9 +262,7 @@ ShowBehavior.prototype.show = function($element) {
 					<aside class="notes">
 						<ul>
 						  <li> Akin to Interface
-						  <li> Not truly needed in JS
-						  <li> Useful to group family
-						  <li> Default show method
+						  <li> Default show method inherited
 						  <li> Can be instantiated
   				  </ul>
 					</aside>
@@ -318,7 +324,9 @@ Fruit.prototype.shower = new ShowBehavior();
 				  </div>
 					<aside class="notes">
 						<ul>
-						  <li> Initialize method - convenient
+						  <li> Abstract
+						  <li> Initialize method -
+						  <li> Share construction code
 						  <li> Instantiate with Strategy
 						  <li> Default strategy ShowBehavior
   				  </ul>
@@ -383,7 +391,8 @@ fruitList.forEach(function(fruit) {
 				  </div>
 				</section>
 
-				<section data-markdown data-background="#000">
+				<section data-background="#000">
+					<div data-markdown>
 					<script type="text/template">
 					## "Native Style" JavaScript Implementation
 					### Strategy functions
@@ -405,6 +414,12 @@ function defaultShow() {
 					* no inheritance hierarchy
 					* no passing in state/data to methods
 					</script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> real world - group in dictionary
+  				  </ul>
+					</aside>
 				</section>
 
 				<section data-markdown data-background="#000">
@@ -472,28 +487,34 @@ Apple.prototype.name = 'apple';
 				<section data-background="#000">
 					<h3>Client</h3>
 					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+// no need to pass strategy into constructor
 var fruitList = [new Apple(), new Orange(), new Banana()];
 
+// client can change strategies dynamically
 fruitList[0].show = showRollingRight;
 
 fruitList.forEach(function(fruit) {
   fruit.show();
 });
+
+var orange = new Orange();
+// can dynamically change default strategy for entire class
+Orange.prototype.show = showSlidingLeft;
+orange.show()
+
+// can dynamically use alternate strategy via call/apply
+var banana = new Banana();
+showRollingRight.apply(banana);
 					</code></pre>
-					<ul>
-					  <li>No need to pass strategy into constructor
-					  <li>Client can change strategies dynamically
-					</ul>
 					</script>
 				</section>
-
 
 				<section>
 					<h2>Summary</h2>
 				  </h3>Primary Differences</h3>
 				  <ol>
-				    <li> point directly to function, no container needed
-			  	  <li> don't need to instantiate context with strategy, bind dynamically
+				    <li> point directly to function - no container class or delegation
+			  	  <li> don't need to instantiate context with strategy
             <li> don't need to pass data to strategy algorithm, bind dynamically
           </ol>
 					<aside class="notes">
