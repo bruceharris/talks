@@ -1,8 +1,3 @@
-  // main differences
-  // 1. point directly to function, no container needed
-  // 2. don't need to instantiate context with strategy, can bind dynamically
-  // 3. don't need to pass data to strategy algoritm, bind dynamically
-  
 'use strict';
 
 $(function() {

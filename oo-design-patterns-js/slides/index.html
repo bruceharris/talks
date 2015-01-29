@@ -45,9 +45,36 @@
 					</p>
 				</section>
 
-				<section data-background="images/L1.jpg"> </section>
-				<section data-background="images/L2.jpg"> </section>
-				<section data-background="images/lego-nerd.jpg"> </section>
+				<section>
+					<img src="images/rockstar.jpg">
+					<aside class="notes">
+						<ul>
+						  <li> Background - JS Programmer
+						  <li> OOP in JS
+	  				  <li> No experience static
+						  <li> Classical OOD - GoF
+  				  </ul>
+					</aside>
+				</section>
+				<section data-background="images/L2.jpg">
+					<aside class="notes">
+						<ul>
+						  <li> Didn't understand
+					  	<li> Overly complicated
+  				  </ul>
+					</aside>
+				</section>
+				<section data-background="images/lego-nerd.jpg">
+					<aside class="notes">
+						<ul>
+						  <li> Experience Java - static, classical
+					  	<li> Revisited OO Patterns
+					  	<li> Head First Design Patterns
+					  	<li> Began to understand
+					  	<li> Understood why didn't understand
+  				  </ul>
+					</aside>
+				</section>
 				<section>
 					<h2>Hypothesis</h2>
 					<blockquote> 
@@ -56,6 +83,12 @@
 						support for first class functions. In dynamically typed, functional
 						languages, there are often simpler patterns to achieve the same objectives.
 					</blockquote>
+					<aside class="notes">
+						<ul>
+						  <li> Not necessarily better
+					  	<li> Often simpler, more native
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<h2>Case Study</h2>
@@ -68,48 +101,143 @@
 				</section>
 				<section>
 					<h2>Case Study</h2>
-					<h3>Strategy Pattern</h3>
+					<h3>Approach</h3>
 					<ol> 
 						<li>Conceptual deep dive</li>
 						<li>Classical style JavaScript implementation</li>
 						<li>"Native style" JavaScript implementation</li>
 					</ol>
+					<aside class="notes">
+						<ul>
+						  <li> Use case for strategy
+						  <li> Compare/contrast Classical/Native
+					  	<li> Takeaway: concept > other patterns
+					  	<li> Audience
+  				  </ul>
+					</aside>
 				</section>	
-				<section>	
-					<iframe src="../demo/index.html" width="1200" height="700"></iframe>
+				<section data-state="demoslide">	
+					<div id="demoplaceholder">
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> Imaginary application
+						  <li> Various fruit
+					  	<li> Appear different ways
+  				  </ul>
+					</aside>
 				</section>	
 				<section>
 					<img src="../uml/01.png">
+					<aside class="notes">
+						<ul>
+						  <li> Initial reqs
+						  <li> Apple just appears
+					  	<li> Banana slides in
+					  	<li> Reasonable - inheritance
+					  	<li> default show, override
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/02.png">
+					<aside class="notes">
+						<ul>
+						  <li> Requirements change
+						  <li> Apple rolls in
+					  	<li> Still reasonable
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/03.png">
+					<aside class="notes">
+						<ul>
+						  <li> Requirements change
+						  <li> New - Orange
+					  	<li> Also rolls in
+					  	<li> Duplication
+					  	<li> Don't want change default
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/04.png">
+					<aside class="notes">
+						<ul>
+						  <li> Naive - inheritance
+						  <li> Beginning to smell
+						  <li> Coupling behavior to class
+					  	<li> Design inflexible
+					  	<li> What if reqs change...
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/05.png">
 					<blockquote class="fragment roll-in">&ldquo;Favor object composition over class inheritance.&rdquo;
 						[GoF 20]</blockquote>
+					<aside class="notes">
+						<ul>
+						  <li> Varying hide behavior
+						  <li> Where put duplicated code?
+						  <li> Principle - favor...
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/06.png">
 					<blockquote class="fragment roll-in">&ldquo;Program to an interface, not an implementation.
 						[GoF 18]</blockquote>
+					<aside class="notes">
+						<ul>
+						  <li> Separate behavior classes
+						  <li> Each fruit has instance
+						  <li> Delegates to behavior class
+						  <li> Code duplication
+						  <li> Coupling, lacks flexibility
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/07.png">
+					<aside class="notes">
+						<ul>
+						  <li> Create a family of algorithms
+						  <li> Encapsulate each one
+						  <li> Make them interchangable
+						  <li> Extend common interface
+						  <li> Closer look - simplify
+  				  </ul>
+					</aside>
 				</section>
 				<section>
 					<img src="../uml/08.png">
+					<aside class="notes">
+						<ul>
+						  <li> Pushed show() into Superclass
+						  <li> Avoid repetition	
+						  <li> Fruit constructor passed strategy
+						  <li> Client can choose strategy
+						  <li> Alternatively setters w/default
+						  <li> Strategy method passed data/state
+						  <li> Strategy decoupled from context
+  				  </ul>
+					</aside>
+				</section>
 				</section>
 				<section>
 					<img src="../uml/09.png">
+					<aside class="notes">
+						<ul>
+						  <li> GoF terminology
+						  <li> Context, strategy
+						  <li> Next - Classical Impl
+  				  </ul>
+					</aside>
 				</section>
-				<section data-markdown data-background="#000" data-background-transition="zoom">
+				<section data-background="#000" data-background-transition="zoom">
+					<div data-markdown>
 					<script type="text/template">
 					## Classical Style implementation
 					### Strategy Class Hierarchy – Base Class
@@ -122,10 +250,21 @@ ShowBehavior.prototype.show = function($element) {
 }
 ```
 					</script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> Akin to Interface
+						  <li> Not truly needed in JS
+						  <li> Useful to group family
+						  <li> Default show method
+						  <li> Can be instantiated
+  				  </ul>
+					</aside>
 				</section>
-				<section data-markdown data-background="#000" >
-					<script type="text/template">
-					### Strategy Class Hierarchy – Subclasses
+				<section data-background="#000" >
+					<div data-markdown>
+					  <script type="text/template">
+					  ### Strategy Class Hierarchy – Subclasses
 
 ```
 // SlidingLeftBehavior extends ShowBehavior
@@ -142,9 +281,18 @@ RollingRightBehavior.prototype.show = function($element) {
   $element.addClass('show roll-right');
 };
 ```
-					</script>
+					  </script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> Strategy subclasses
+						  <li> Extend strategy base class
+						  <li> Override show() - varying behavior
+  				  </ul>
+					</aside>
 				</section>
-				<section data-markdown data-background="#000">
+				<section data-background="#000">
+					<div data-markdown>
 					<script type="text/template">
 					### Context Class Hierarchy – Base Class
 
@@ -165,10 +313,19 @@ Fruit.prototype.shower = new ShowBehavior();
 ```					
 
 					* show method delegates to instance of strategy class
-					* passes data to it so it can change state of context object
+					* passes data to it so it can operate on context object
 					</script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> Initialize method - convenient
+						  <li> Instantiate with Strategy
+						  <li> Default strategy ShowBehavior
+  				  </ul>
+					</aside>
 				</section>
-				<section data-markdown data-background="#000">
+				<section data-background="#000">
+					<div data-markdown>
 					<script type="text/template">
 					### Context Class Hierarchy – Subclasses
 ```
@@ -195,9 +352,18 @@ Apple.prototype = Object.create(Fruit.prototype);
 Apple.prototype.name = 'apple';
 ```
 					</script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> Subclass calls initialize
+						  <li> Passes strategy
+						  <li> Inherits show method, delegates
+  				  </ul>
+					</aside>
 				</section>
 
-				<section data-markdown data-background="#000">
+				<section data-background="#000">
+					<div data-markdown>
 					<script type="text/template">
 					### Client
 ```
@@ -214,8 +380,8 @@ fruitList.forEach(function(fruit) {
 
 					* pass instance of strategy to context constructor
 					</script>
+				  </div>
 				</section>
-
 
 				<section data-markdown data-background="#000">
 					<script type="text/template">
@@ -256,13 +422,15 @@ Fruit.prototype.initialize = function() {
 Fruit.prototype.show = defaultShow;
 ```
 
+					* no need to pass in strategy to constructor
 					* show method assigned to a stand alone function
 					* direct reference rather than delegation
 					* strategy function binds `this` dynamically
 					</script>
 				</section>
 
-				<section data-markdown data-background="#000">
+				<section data-background="#000">
+					<div data-markdown>
 					<script type="text/template">
 					### Context Class Hierarchy – Subclasses
 ```
@@ -292,12 +460,18 @@ Apple.prototype = Object.create(Fruit.prototype);
 Apple.prototype.name = 'apple';
 ```
 					</script>
+				  </div>
+					<aside class="notes">
+						<ul>
+						  <li> not passing in strategy to constructor
+						  <li> optionally override show for all Bananas
+  				  </ul>
+					</aside>
 				</section>
 
-				<section data-markdown data-background="#000">
-					<script type="text/template">
-					### Client
-```
+				<section data-background="#000">
+					<h3>Client</h3>
+					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
 var fruitList = [new Apple(), new Orange(), new Banana()];
 
 fruitList[0].show = showRollingRight;
@@ -305,33 +479,37 @@ fruitList[0].show = showRollingRight;
 fruitList.forEach(function(fruit) {
   fruit.show();
 });
-```
-
-					* No need to pass strategy into constructor
-					* Client can change strategies dynamically
+					</code></pre>
+					<ul>
+					  <li>No need to pass strategy into constructor
+					  <li>Client can change strategies dynamically
+					</ul>
 					</script>
 				</section>
 
 
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
+				<section>
+					<h2>Summary</h2>
+				  </h3>Primary Differences</h3>
+				  <ol>
+				    <li> point directly to function, no container needed
+			  	  <li> don't need to instantiate context with strategy, bind dynamically
+            <li> don't need to pass data to strategy algorithm, bind dynamically
+          </ol>
+					<aside class="notes">
+						<ul>
+							<li> Similar adaptations can be applied to some other GoF patterns
+						</ul>
+					</aside>
 				</section>
-
-
+  
 				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+					<h1>Thanks</h1>
+					<ul>
+						<li>Working <a href="../demo/index.html">demo</a> with both styles fully implemented
+						<li>Slides: <a href="http://bruceharris.github.io/talks">http://bruceharris.github.io/talks</a>
+						<li>Source: <a href="https://github.com/bruceharris/talks">https://github.com/bruceharris/talks</a>
+					</ul>
 				</section>
 
 			</div>
@@ -341,6 +519,7 @@ Reveal.addEventListener( 'customevent', function() {
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script>
 
 			// Full list of configuration options available at:
@@ -362,6 +541,11 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
+			});
+
+			Reveal.addEventListener('demoslide', function() {
+				var $iframe = $('<iframe src="../demo/native.html" width="1200" height="700">');
+				$('#demoplaceholder').empty().append($iframe);
 			});
 
 		</script>
